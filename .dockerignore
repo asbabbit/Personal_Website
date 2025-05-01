@@ -1,0 +1,31 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# Git
+.git
+.gitignore
+*.git
+*.gitignore
+
+# Environment variables
+.env
+
+# Angular build files
+frontend/dist
+frontend/.angular
+
+# IDE files
+.idea
+.vscode
+
+# MongoDB data directory
+data/db
+
+# Logs
+logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

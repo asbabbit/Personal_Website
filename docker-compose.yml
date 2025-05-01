@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8006:8006"
+    networks:
+      - cloudflare_network
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=8006
+      - DOMAIN=resume.asbabbit.com
+      - MONGO_URI=mongodb://host.docker.internal:27017/resume_db
+      - CLOUDFLARE_TOKEN=${CLOUDFLARE_TOKEN}
+
+  # Add a separate MongoDB service
+  mongodb:
+    image: mongo:6.0
+    networks:
+      - cloudflare_network
+    volumes:
+      - mongodb_data:/data/db
+
+networks:
+  cloudflare_network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
