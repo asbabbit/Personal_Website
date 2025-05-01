@@ -1,0 +1,7 @@
+<div class="container">
+    <app-about></app-about>
+    <div *ngFor="let info of infos" class="pb-4 m-1 d-flex flex-column align-items-center ">
+        <app-info [info]="info"></app-info>
+    </div>
+    <app-featured-project></app-featured-project>
+</div>

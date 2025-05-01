@@ -1,0 +1,51 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card bg-dark text-light">
+        <div class="card-body">
+          <form #contactForm="ngForm">
+            <div class="mb-3">
+              <input 
+                type="text" 
+                class="form-control bg-dark text-light border-secondary" 
+                id="fullName" 
+                name="fullName" 
+                placeholder="Your full name"
+                [(ngModel)]="contactData.fullName" 
+                required>
+            </div>
+            <div class="mb-3">
+              <input 
+                type="email" 
+                class="form-control bg-dark text-light border-secondary" 
+                id="email" 
+                name="email" 
+                placeholder="Your email"
+                [(ngModel)]="contactData.email" 
+                required
+                email>
+            </div>
+            <div class="mb-3">
+              <textarea 
+                class="form-control bg-dark text-light border-secondary" 
+                id="message" 
+                name="message" 
+                rows="4" 
+                placeholder="Your message"
+                [(ngModel)]="contactData.message" 
+                required></textarea>
+            </div>
+            <div class="d-grid">
+              <button 
+                type="submit" 
+                class="btn btn-secondary"
+                (click)="onSubmit()">
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

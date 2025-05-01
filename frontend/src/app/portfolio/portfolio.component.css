@@ -1,0 +1,10 @@
+.fullscreen-center {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+}
+
+.row {
+    display: flex;
+    justify-content: center; /* Ensure the row content is horizontally centered */
+    flex-wrap: wrap;         /* Allow wrapping if needed for responsiveness */
+}

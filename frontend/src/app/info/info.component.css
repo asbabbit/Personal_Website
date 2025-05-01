@@ -1,0 +1,17 @@
+.info-box {
+    background-color: #47494a;
+    max-width: 600px;  /* Ensures it doesn't exceed 600px */
+    width: 100%;       /* Allows it to shrink on smaller screens */
+    margin: 0 auto;    /* Centers the box */
+    padding: 1rem;
+    box-sizing: border-box; /* Ensures padding doesn’t contribute to width */
+    overflow-wrap: break-word; /* Prevents long words from causing overflow */
+}
+  
+
+.info-icon {
+  max-width: 100%;         /* Ensures the image does not exceed its container width */
+  max-height: 100px;
+  width: auto;
+  height: auto;
+}

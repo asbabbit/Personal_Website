@@ -1,0 +1,28 @@
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input, textarea {
+  border-style: dashed !important;
+  border-width: 1px !important;
+  border-radius: 0 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #6c757d;
+}
+
+button {
+  border-radius: 0 !important;
+  padding: 12px !important;
+  font-weight: 500 !important;
+}
+
+/* Add responsive padding */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

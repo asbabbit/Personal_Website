@@ -1,0 +1,15 @@
+<h1 class="text-center" *ngIf="!info.exists">{{info.section}}</h1>
+
+<div class="p-3 rounded info-box shadow">
+    <div class="row flex-nowrap">
+        <img [src]="info.icon" class="info-icon">
+        <div class="col">
+            <h3>{{info.title}}</h3>
+            <h5>{{info.company}}</h5>
+            <h5 style="font-style: italic">{{info.time}}</h5>
+        </div>
+    </div>
+    <br>
+    
+    <p class="mx-4" [innerHTML]="info.summary"></p>
+</div>

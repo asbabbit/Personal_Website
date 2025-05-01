@@ -1,0 +1,11 @@
+/* Override the default Bootstrap btn-primary color */
+.btn-primary {
+    background-color:#4e9eff !important;  /* Change to your desired color */
+    border-color: #4e9eff !important;      /* Make border match the background */
+}
+
+/* Optional: Customize the hover effect */
+.btn-primary:hover {
+    background-color:  #67acff !important;  /* Change hover background color */
+    border-color: #67acff !important;      /* Hover border color */
+}
