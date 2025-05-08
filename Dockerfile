@@ -21,14 +21,28 @@ RUN apt-get update && apt-get install -y mongodb-org
 # Create directory for MongoDB data
 RUN mkdir -p /data/db
 
+# Install specific npm version (9.2.0)
+RUN npm install -g npm@9.2.0
+
 # Install Angular CLI
 RUN npm install -g @angular/cli@15
 
 # Install PM2 globally
 RUN npm install -g pm2
 
-# Create frontend directory structure
-RUN mkdir -p /app/frontend
+# Copy frontend package files and install dependencies
+COPY ./frontend/package*.json ./frontend/
+WORKDIR /app/frontend
+RUN npm install
+
+# Copy frontend source files
+COPY ./frontend ./
+
+# Build Angular application
+RUN npm run build
+
+# Go back to app directory
+WORKDIR /app
 
 # Copy server package.json and install dependencies
 COPY ./server/package*.json ./server/
@@ -38,9 +52,6 @@ RUN npm install
 # Copy server files
 WORKDIR /app
 COPY ./server ./server
-
-# Create frontend directory (don't try to copy files yet)
-RUN mkdir -p /app/frontend
 
 # Install Cloudflare tunnel
 RUN curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb

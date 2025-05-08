@@ -1,65 +1,40 @@
 #!/bin/bash
-# start.sh - Startup script for Angular, Node.js, and Cloudflare Tunnel
-
+# start.sh - Startup script for Node.js server and Cloudflare Tunnel
 # Set up error handling
 set -e
 echo "Starting application services..."
 
-# Check if Angular application exists and build it
-if [ -f /app/frontend/angular.json ]; then
-  echo "Building Angular application..."
-  cd /app/frontend
-  ng build --configuration production
-else
-  echo "Frontend not initialized. Creating a placeholder frontend..."
-  mkdir -p /app/frontend/dist/resume
-  # Create a simple index.html file
-  cat > /app/frontend/dist/resume/index.html << 'EOF'
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Resasdfplication</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      text-align: center;
-    }
-    .message {
-      background-color: #f8f9fa;
-      border-radius: 8px;
-      padding: 20px;
-      margin-top: 50px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-  </style>
-</head>
-<body>
-  <h1>Reasdf Application</h1>
-  <div class="message">
-    <h2>Frontend Not Initialized</h2>
-    <p>The Angular application has not been initialized yet.</p>
-    <p>Please follow these steps to set up your frontend:</p>
-    <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
-      <li>Connect to your Docker container: <code>docker-compose exec app bash</code></li>
-      <li>Navigate to the frontend directory: <code>cd /app/frontend</code></li>
-      <li>Initialize a new Angular project: <code>ng new . --routing --skip-git</code></li>
-      <li>Build the application: <code>ng build</code></li>
-    </ol>
-  </div>
-</body>
-</html>
-EOF
-  echo "Created placeholder frontend."
+# Define base paths based on the project structure
+RESUME_DIR="/app"
+FRONTEND_DIR="${RESUME_DIR}/frontend"
+SERVER_DIR="${RESUME_DIR}/server"
+
+echo "Project structure:"
+echo "- Resume directory: ${RESUME_DIR}"
+echo "- Frontend directory: ${FRONTEND_DIR}"
+echo "- Server directory: ${SERVER_DIR}"
+
+# Make sure Angular build directory exists
+if [ ! -d "${FRONTEND_DIR}/dist" ]; then
+  echo "ERROR: Angular build directory not found at ${FRONTEND_DIR}/dist"
+  echo "The Angular application must be built during the Docker image creation"
+  exit 1
 fi
+
+echo "Using Angular built files from: ${FRONTEND_DIR}/dist"
 
 # Start Node.js server with PM2
 echo "Starting Node.js server with PM2..."
-cd /app/server
-pm2 start app.js --name "resume-server" --no-autorestart --watch --exp-backoff-restart-delay=100 --listen-timeout 5000
+cd "${SERVER_DIR}"
 
 # Ensure app is listening on all interfaces
-sed -i 's/app.listen(PORT,/app.listen(PORT, "0.0.0.0",/g' /app/server/app.js
+if grep -q "app.listen(PORT" app.js && ! grep -q "app.listen(PORT, \"0.0.0.0\"" app.js; then
+  echo "Configuring server to listen on all interfaces..."
+  sed -i 's/app.listen(PORT,/app.listen(PORT, "0.0.0.0",/g' app.js
+fi
+
+# Start the server with PM2
+pm2 start app.js --name "resume-server" --no-autorestart --watch --exp-backoff-restart-delay=100 --listen-timeout 5000
 
 # Check if CLOUDFLARE_TOKEN is set
 if [ -z "$CLOUDFLARE_TOKEN" ]; then

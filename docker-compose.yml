@@ -13,12 +13,12 @@ services:
       - NODE_ENV=production
       - PORT=8006
       - DOMAIN=resume.asbabbit.com
-      - MONGO_URI=mongodb://host.docker.internal:27017/resume_db
+      - MONGO_URI=mongodb://mongodb:27017/resume_db
       - CLOUDFLARE_TOKEN=${CLOUDFLARE_TOKEN}
 
   # Add a separate MongoDB service
   mongodb:
-    image: mongo:6.0
+    image: mongo:4.4
     networks:
       - cloudflare_network
     volumes:
