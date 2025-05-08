@@ -1,19 +1,14 @@
-<div class="modal-header d-flex justify-content-between align-items-start">
-    <div>
-        <h2 class="mb-2">{{project.name}}</h2>
-        <div class="d-flex flex-wrap">
-            <div *ngFor="let tag of project.tags" class="me-2 mb-1 tag" [style.background-color]="tag.color">
-                {{tag}}
-            </div>
+<div class="modal-body" style="max-height: 80vh; overflow-y: auto; margin: 0 auto; padding-top: 0; position: relative;">
+    <div style="text-align: right; padding: 10px 5px;">
+        <button class="btn-close" (click)="bsModalRef.hide()"></button>
+    </div>
+    <app-custom-carousel [project]="project"></app-custom-carousel>
+    <div class="d-flex flex-wrap">
+        <div *ngFor="let tag of project.tags" class="me-2 mb-2 tag" [style.background-color]="tag.color">
+            {{tag}}
         </div>
     </div>
-    <button class="btn-close" (click)="bsModalRef.hide()"></button>
-</div>
-
-
-<div class="modal-body " style="overflow-y: auto;">
-    <app-custom-carousel [project]="project"></app-custom-carousel>
-    <h3 class="mt-2">Description</h3>
+    <h2 class="mb-">{{project.name}}</h2>
     <p>{{project.description}}</p>
-    <p>You can find my project on my Github <a href={{project.projectLink}} target="_blank">here</a></p>
+    <a class="btn btn-primary rounded-pill mt-2 mx-auto d-block" href="{{project.projectLink}}" target="_blank" style="width: 65%;">View on Github</a>
 </div>

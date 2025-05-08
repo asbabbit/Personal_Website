@@ -14,7 +14,7 @@ export class FeaturedProjectComponent implements OnInit{
       this.titleService.setTitle('Alma Babbitt - Home');
     }
     ngOnInit(): void {
-      this.project = this.projectService.GetProjectById(1);
+      this.project = this.projectService.GetProjectById(0);
     }
 
 }

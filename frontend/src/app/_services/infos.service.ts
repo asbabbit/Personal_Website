@@ -14,7 +14,7 @@ export class InfosService {
       company: 'Arizona State University',
       time: 'August 2023 - December 2024',
       summary: 'Collaborated with professors and graduate students to fine-tune large language models that generate verification tests for Verilog designs.',
-      icon: 'assets/ASU.svg'
+      icon: 'assets/University_logo.png'
     },
     {
       id: 1,
@@ -24,7 +24,7 @@ export class InfosService {
       company: 'Arizona State University',
       time: 'August 2023 - December 2024',
       summary: 'Worked with professors and graduate students to create programming assignments for 100+ Data Structures students and joined weekly curriculum and progress meetings.',
-      icon: 'assets/ASU.svg'
+      icon: 'assets/University_logo.png'
     },
     {
       id: 2,
@@ -44,7 +44,7 @@ export class InfosService {
       company: 'Arizona State University',
       time: 'May 2020 - December 2024',
       summary: 'New American University Scholar, FURI Grant Recipient, magna cum laude, and four-time Dean’s List honoree.',
-      icon: 'assets/ASU.svg'
+      icon: 'assets/University_logo.png'
     }
   ];
   constructor() { }
