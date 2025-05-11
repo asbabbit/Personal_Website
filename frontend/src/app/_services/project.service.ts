@@ -11,9 +11,9 @@ export class ProjectService {
       {
         id: 0,
         name: '4G LTE Security Camera',
-        summary: 'Designed a differential amplifier given specifications',
+        summary: 'Created a system that live streams video over 4G LTE',
         description: 'I developed a battery-powered, LTE-connected camera system that streams video to a server without relying on Wi-Fi. I implemented multithreaded FreeRTOS tasks to synchronize real-time image capture and network transmission, and switched from TCP to UDP to reduce latency—achieving 325 kbps and 10 fps with SVGA compression. I adapted TinyGSM to support UDP APIs and designed an MTU-aware chunking and metadata tagging system to ensure reliable file transfer and reassembly. Through this project, I gained hands-on experience with real-time operating systems, embedded networking, and protocol optimization, and set the stage for future upgrades like H.265 hardware acceleration and secure transmission with SSL.',
-        projectLink: '',
+        projectLink: 'https://github.com/asbabbit/Securmax',
         tags: [Tag.DEBIAN, Tag.CPP, Tag.MCU, Tag.FREERTOS, Tag.PYTHON],
         pictures: ["assets/ESP32.webp", "assets/output_bright.gif"]
       },
@@ -41,7 +41,7 @@ export class ProjectService {
       name: 'Differential Amp',
       summary: 'Constructed a differential amplifier given specifications',
       description: 'I designed and simulated a differential amplifier with passive loads and current source biasing in Cadence. I calculated theoretical performance metrics like differential gain, output swing, and current, then compared them to simulated results to ensure the design met power and gain specifications. Through this project, I learned how to balance theoretical calculations with practical design constraints and validated my design choices.',
-      projectLink: '',
+      projectLink: 'https://github.com/asbabbit/',
       tags: [Tag.CADENCE],
       pictures: ["assets/Specification.png","assets/Ideal-Calc.png","assets/Non-Ideal-Calc.png","assets/Non-Ideal.png","assets/Waveform.png"]
     },

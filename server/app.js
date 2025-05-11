@@ -1,10 +1,10 @@
 // Load environment variables
 require('dotenv').config();
-
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
+const nodemailer = require('nodemailer'); // Add nodemailer
 
 // Create Express application
 const app = express();
@@ -39,7 +39,6 @@ if (!angularBuildPath) {
   console.error("ERROR: Angular build directory not found!");
   process.exit(1);
 }
-
 console.log(`Serving Angular from: ${angularBuildPath}`);
 
 // Serve static files from the Angular build
@@ -49,6 +48,10 @@ app.use(express.static(angularBuildPath));
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
+
+// Import contact routes
+const contactRoutes = require('./routes/contact');
+app.use('/api', contactRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI || 'mongodb://mongodb:27017/resume_db', {

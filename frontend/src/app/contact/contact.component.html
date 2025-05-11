@@ -3,44 +3,51 @@
     <div class="col-md-8">
       <div class="card bg-dark text-light">
         <div class="card-body">
+          <!-- Show success/error message -->
+          <div *ngIf="submitMessage" class="alert mb-3" 
+               [ngClass]="{'alert-success': submitSuccess, 'alert-danger': !submitSuccess}">
+            {{ submitMessage }}
+          </div>
+          
           <form #contactForm="ngForm">
             <div class="mb-3">
-              <input 
-                type="text" 
-                class="form-control bg-dark text-light border-secondary" 
-                id="fullName" 
-                name="fullName" 
+              <input
+                type="text"
+                class="form-control bg-dark text-light border-secondary"
+                id="fullName"
+                name="fullName"
                 placeholder="Your full name"
-                [(ngModel)]="contactData.fullName" 
+                [(ngModel)]="contactData.fullName"
                 required>
             </div>
             <div class="mb-3">
-              <input 
-                type="email" 
-                class="form-control bg-dark text-light border-secondary" 
-                id="email" 
-                name="email" 
+              <input
+                type="email"
+                class="form-control bg-dark text-light border-secondary"
+                id="email"
+                name="email"
                 placeholder="Your email"
-                [(ngModel)]="contactData.email" 
+                [(ngModel)]="contactData.email"
                 required
                 email>
             </div>
             <div class="mb-3">
-              <textarea 
-                class="form-control bg-dark text-light border-secondary" 
-                id="message" 
-                name="message" 
-                rows="4" 
+              <textarea
+                class="form-control bg-dark text-light border-secondary"
+                id="message"
+                name="message"
+                rows="4"
                 placeholder="Your message"
-                [(ngModel)]="contactData.message" 
+                [(ngModel)]="contactData.message"
                 required></textarea>
             </div>
             <div class="d-grid">
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 class="btn btn-secondary"
-                (click)="onSubmit()">
-                Send
+                (click)="onSubmit()"
+                [disabled]="isSubmitting || !contactForm.form.valid">
+                {{ isSubmitting ? 'Sending...' : 'Send' }}
               </button>
             </div>
           </form>
